@@ -31,23 +31,8 @@ function addTranscript(text) {
 }
 
 // 将来ここだけをローカルAIなどに差し替える。
-const BrainAdapter = {
-  async respond(userText) {
-    const text = userText.trim();
-    if (!text) return "ご用件をどうぞ、マスター。";
-
-    if (/こんにちは|こんばんは|おはよう/.test(text)) {
-      return "ご挨拶ありがとうございます、マスター。システムは正常に稼働しています。";
-    }
-    if (/名前|誰/.test(text)) {
-      return "私はJ.A.R.V.I.S.です。現在は初期コアとして動作しています。";
-    }
-    if (/時間|時刻/.test(text)) {
-      return `現在時刻は${new Date().toLocaleTimeString("ja-JP")}です。`;
-    }
-    return `「${text}」を受信しました。現在はJ.A.R.V.I.S. 0.1のテスト応答です。`;
-  }
-};
+// BrainAdapterはbrain.jsのAIコアを使用する
+const BrainAdapter = window.JarvisBrain;
 
 async function sendMessage(text) {
   addMessage(text, "user");
